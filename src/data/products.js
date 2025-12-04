@@ -88,44 +88,7 @@ export const applicationAreas = [
     title: 'Şantiye Yaşam Alanı',
     area: 'Uygulama alanı: Modüler konaklama ve yemekhane',
     image: img3,
-  },
-  {
-    title: 'Altyapı Çözümleri',
-    area: 'Uygulama alanı: Uyarıcı karolar, yürüyüş yolları',
-    image: img4,
-  },
-  {
-    title: 'Altyapı Çözümleri',
-    area: 'Uygulama alanı: Uyarıcı karolar, yürüyüş yolları',
-    image: img4,
-  },
-  {
-    title: 'Altyapı Çözümleri',
-    area: 'Uygulama alanı: Uyarıcı karolar, yürüyüş yolları',
-    image: img4,
   }
 ]
 
-export const technicalSpecs = [
-  {
-    parameter: 'Panel kalınlık seçenekleri',
-    value: '40 / 60 / 80 mm',
-    description: 'Çift taraflı galvaniz sac + EPS / taş yünü dolgu',
-  },
-  {
-    parameter: 'Taşıyıcı karkas',
-    value: 'S355 çelik, 2.5 mm',
-    description: 'Galvaniz kaplama, modüler civata bağlantıları',
-  },
-  {
-    parameter: 'Zemin kaplaması',
-    value: 'PVC, karo veya kompozit alternatifleri',
-    description: 'Kaymaz yüzey, EN 13845 sertifikalı',
-  },
-  {
-    parameter: 'Isı / ses performansı',
-    value: 'U değeri 0.32 W/m²K',
-    description: 'Mineral yalıtım + buhar kesici detay',
-  },
-]
 

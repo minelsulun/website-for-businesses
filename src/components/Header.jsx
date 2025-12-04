@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react'
 import logo from '../images/egenet.png' // LOGO EKLENDİ
 
 const navItems = [
-  { label: 'Ürünler', href: '#urunler' },
-  { label: 'Özellikler', href: '#ozellikler' },
-  { label: 'Uygulamalar', href: '#uygulamalar' },
   { label: 'Hakkımızda', href: '#hakkimizda' },
+  { label: 'Uygulamalar', href: '#uygulamalar' },
   { label: 'İletişim', href: '#iletisim' },
 ]
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const url = window.location.href;
+
+  if(url=="/urunler"){
+
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -48,16 +51,24 @@ export function Header() {
 
         {/* NAV - Desktop */}
         <nav className="hidden items-center gap-8 text-sm font-medium text-brand-mid lg:flex">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="transition hover:text-brand-dark">
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isUrunler = item.href === '#urunler'
+            const href = isUrunler ? `/urunler/` : item.href
+            const target = isUrunler ? '_blank' : undefined
+            const rel = isUrunler ? 'noopener noreferrer' : undefined
+            return (
+              <a key={item.href} href={href} target={target} rel={rel} className="transition hover:text-brand-dark">
+                {item.label}
+              </a>
+            )
+          })}
           <a
-            href="#iletisim"
+            href="/urunler/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full border border-brand-dark px-5 py-2 text-brand-dark transition hover:bg-brand-dark hover:text-white"
           >
-            Katalogu İncele
+            Ürünleri İncele
           </a>
         </nav>
 
@@ -76,17 +87,32 @@ export function Header() {
       {/* MOBILE NAV */}
       <div className={`lg:hidden transition-all duration-300 ${menuOpen ? 'max-h-96' : 'max-h-0 overflow-hidden'}`}>
         <nav className="flex flex-col gap-4 border-t border-black/5 px-6 py-4 text-brand-dark">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="py-1 text-base">
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isUrunler = item.href === '#urunler'
+            const href = isUrunler ? `/urunler/` : item.href
+            const target = isUrunler ? '_blank' : undefined
+            const rel = isUrunler ? 'noopener noreferrer' : undefined
+            return (
+              <a
+                key={item.href}
+                href={href}
+                target={target}
+                rel={rel}
+                onClick={() => setMenuOpen(false)}
+                className="py-1 text-base"
+              >
+                {item.label}
+              </a>
+            )
+          })}
           <a
-            href="#iletisim"
+            href="/urunler/"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             className="rounded-full bg-brand-dark px-5 py-2 text-center text-white"
           >
-            Katalogu İncele
+            Ürünleri İncele
           </a>
         </nav>
       </div>

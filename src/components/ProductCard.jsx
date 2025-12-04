@@ -1,6 +1,17 @@
+import { useRef } from 'react'
+import { useInView } from '../hooks/useInView'
+
 export function ProductCard({ product }) {
+  const ref = useRef(null)
+  const inView = useInView(ref)
+
   return (
-    <article className="flex flex-col gap-4 rounded-[28px] border border-black/5 bg-white p-6 shadow-card-lg">
+    <article
+      ref={ref}
+      className={`flex flex-col gap-4 rounded-[28px] border border-black/5 bg-white p-6 shadow-card-lg transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none ${
+        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+    >
       <div className="flex items-center justify-between">
         <span className="text-xs uppercase tracking-[0.4em] text-brand-mid">{product.code}</span>
         <span className="rounded-full bg-brand-light px-3 py-1 text-xs text-brand-mid">{product.reference}</span>

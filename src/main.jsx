@@ -2,14 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './style.css'
 import { App } from './App.jsx'
+import {BrowserRouter} from "react-router-dom";
+
 
 const rootElement = document.getElementById('app')
 
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+
   )
 }
 

@@ -1,7 +1,19 @@
 
+import { useRef } from 'react'
+import { useInView } from '../hooks/useInView'
+
 export function About() {
+  const ref = useRef(null)
+  const inView = useInView(ref)
+
   return (
-    <section id="hakkimizda" className="bg-white py-24 text-black">
+    <section
+      id="hakkimizda"
+      ref={ref}
+      className={`bg-white py-24 text-black transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none ${
+        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+    >
       <div className="mx-auto max-w-5xl px-6 space-y-6">
         <p className="text-xs uppercase tracking-[0.4em] text-brand-mid">Hakkımızda</p>
         <h2 className="text-3xl font-semibold text-brand-dark">Modern üretim, ölçülebilir kalite</h2>

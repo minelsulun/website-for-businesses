@@ -1,6 +1,5 @@
 const footerLinks = [
   { label: 'Ürünler', href: '#urunler' },
-  { label: 'Özellikler', href: '#ozellikler' },
   { label: 'Uygulamalar', href: '#uygulamalar' },
   { label: 'Hakkımızda', href: '#hakkimizda' },
   { label: 'İletişim', href: '#iletisim' },

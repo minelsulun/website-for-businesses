@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { useInView } from '../hooks/useInView'
 
 const initialForm = { name: '', phone: '', email: '', message: '' }
 
@@ -7,11 +8,21 @@ export function Contact() {
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] = useState({ sending: false, success: false })
 
+  const leftRef = useRef(null)
+  const rightRef = useRef(null)
+  const leftInView = useInView(leftRef)
+  const rightInView = useInView(rightRef)
+
   return (
     <section id="iletisim" className="bg-brand-light py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2">
         {/* SOL: metin ve iletişim bilgileri */}
-        <div className="space-y-6">
+        <div
+          ref={leftRef}
+          className={`space-y-6 transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none ${
+            leftInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           <p className="text-xs uppercase tracking-[0.4em] text-brand-mid">İletişim</p>
           <h2 className="text-3xl font-semibold text-brand-dark">Teklif ve yerinde keşif için bize ulaşın</h2>
           <p className="text-brand-mid">
@@ -38,7 +49,12 @@ export function Contact() {
         </div>
 
         {/* SAĞ: Google Maps & Yol Tarifi */}
-        <div className="rounded-[32px] border border-black/5 bg-white p-4 md:p-6 shadow-card-lg space-y-4">
+        <div
+          ref={rightRef}
+          className={`rounded-[32px] border border-black/5 bg-white p-4 md:p-6 shadow-card-lg space-y-4 transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none ${
+            rightInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-brand-mid">Konum</p>
