@@ -1,17 +1,15 @@
 import { useRef, useState } from 'react'
-import { useInView } from '../hooks/useInView'
 
 const initialForm = { name: '', phone: '', email: '', message: '' }
 
 export function Contact() {
-  // Şimdilik kullanılmıyor ama istersen ileride tekrar form ekleyebilirsin
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] = useState({ sending: false, success: false })
 
   const leftRef = useRef(null)
   const rightRef = useRef(null)
-  const leftInView = useInView(leftRef)
-  const rightInView = useInView(rightRef)
+  const leftInView = true
+  const rightInView = true
 
   return (
     <section id="iletisim" className="bg-brand-light py-24">

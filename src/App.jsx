@@ -4,10 +4,10 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer.jsx'
 import { Header } from './components/Header.jsx'
 import { Hero } from './components/Hero.tsx'
-import { ProductCategories } from './components/ProductCategories'
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton.tsx'
 import {Route, Routes} from "react-router-dom";
 import Homepage from "./pages/homepage.jsx";
+import Products from "./pages/Products.jsx";
 
 export function App() {
   return (
@@ -17,7 +17,7 @@ export function App() {
               <Route path="/" element={
                   <Homepage />
               }/>
-              <Route path="/urunler" element={<ProductCategories />} />
+              <Route path="/urunler" element={<Products />} />
           </Routes>
       </>
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import logo from '../images/egenet.png' // LOGO EKLENDİ
+import logo from '../images/egenet.png'
+import {useLocation} from "react-router-dom"; // LOGO EKLENDİ
 
 const navItems = [
   { label: 'Hakkımızda', href: '#hakkimizda' },
@@ -10,11 +11,15 @@ const navItems = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const url = window.location.href;
+  const location = useLocation();
+  const url = location.pathname;
+  const { hash } = useLocation();
 
-  if(url=="/urunler"){
-
-  }
+  useEffect(() => {
+        if (!hash) return;
+        const el = document.querySelector(hash);
+        el?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -41,7 +46,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 
         {/* LOGO */}
-        <a href="#top" className="flex items-center gap-3">
+        <a href={url === "/" ? "#top" : "/"} className="flex items-center gap-3">
           <img
             src={logo}
             alt="Ege Net Prefabrik Logo"
@@ -53,17 +58,24 @@ export function Header() {
         <nav className="hidden items-center gap-8 text-sm font-medium text-brand-mid lg:flex">
           {navItems.map((item) => {
             const isUrunler = item.href === '#urunler'
-            const href = isUrunler ? `/urunler/` : item.href
+            const href = isUrunler ? `/urunler` :  item.href
             const target = isUrunler ? '_blank' : undefined
             const rel = isUrunler ? 'noopener noreferrer' : undefined
             return (
-              <a key={item.href} href={href} target={target} rel={rel} className="transition hover:text-brand-dark">
+              <button key={item.href} onClick={()=>{
+                if(url !== "/" ){
+                    window.location.href = "/" + item.href;
+                    return;
+                }
+                const el = document.querySelector(item.href);
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }} rel={rel} className="transition hover:text-brand-dark">
                 {item.label}
-              </a>
+              </button>
             )
           })}
           <a
-            href="/urunler/"
+            href="/urunler"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-brand-dark px-5 py-2 text-brand-dark transition hover:bg-brand-dark hover:text-white"
@@ -93,16 +105,18 @@ export function Header() {
             const target = isUrunler ? '_blank' : undefined
             const rel = isUrunler ? 'noopener noreferrer' : undefined
             return (
-              <a
+              <button
                 key={item.href}
-                href={href}
-                target={target}
                 rel={rel}
-                onClick={() => setMenuOpen(false)}
+                onClick={()=>{
+                  const el = document.querySelector(item.href);
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                  setMenuOpen(false)
+                }}
                 className="py-1 text-base"
               >
                 {item.label}
-              </a>
+              </button>
             )
           })}
           <a

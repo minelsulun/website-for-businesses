@@ -1,9 +1,8 @@
 import { useRef } from 'react'
-import { useInView } from '../hooks/useInView'
 
 export function ProductCard({ product }) {
   const ref = useRef(null)
-  const inView = useInView(ref)
+  const inView = true
 
   return (
     <article
